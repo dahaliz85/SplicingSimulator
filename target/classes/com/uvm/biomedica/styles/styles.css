@@ -1,0 +1,58 @@
+/* ==========================================================
+   COL3A1 Splicing Simulator - Master Stylesheet
+   ========================================================== */
+
+/* 1. Fondo Global y Tipografía */
+.root {
+    -fx-base: #0d1117;
+    -fx-background-color: #0d1117;
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-text-base-color: #c9d1d9;
+}
+
+/* 2. Barra Superior (El problema que teníamos) */
+.header-area {
+    -fx-background-color: #161b22;
+    -fx-padding: 15;
+    -fx-border-color: #30363d;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* 3. Paneles de Datos */
+.table-view, .text-area {
+    -fx-background-color: #161b22;
+    -fx-control-inner-background: #161b22;
+    -fx-border-color: #30363d;
+    -fx-border-radius: 5;
+}
+
+/* 4. Tablas (Headers y Celdas) */
+.table-view .column-header,
+.table-view .column-header-background {
+    -fx-background-color: #21262d;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: #161b22;
+    -fx-text-fill: #c9d1d9;
+}
+
+/* 5. Cuadro de Resultados (Esquina inferior derecha) */
+.results-box {
+    -fx-background-color: #161b22;
+    -fx-border-color: #38bdf8;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-padding: 15;
+}
+
+/* 6. Títulos de sección */
+.section-header {
+    -fx-text-fill: #38bdf8;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}

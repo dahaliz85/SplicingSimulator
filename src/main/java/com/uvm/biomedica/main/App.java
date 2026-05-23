@@ -39,6 +39,7 @@ public class App extends Application {
         stage.setTitle("COL3A1 Splicing Analyzer");
         stage.setScene(scene);
         stage.setResizable(false);
+
         stage.show();
     }
 

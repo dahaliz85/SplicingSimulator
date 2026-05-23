@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9bfcd9c-a06d-4bcb-afed-fe4749723457" name="Changes" comment="Se agregaron los estilos para la app">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2026_01_49_a__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2026_01_49_a__m___Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/main/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.uvm.biomedica.views/principal_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.uvm.biomedica.views/principal_view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com.uvm.biomedica.views/principal_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com.uvm.biomedica.views/principal_view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/uvm/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/uvm/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/controller/MainController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/main/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/main/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +130,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779522604350</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Se agregaron los estilos para la app">
+      <option name="closed" value="true" />
+      <created>1779524436706</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1779524436707</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

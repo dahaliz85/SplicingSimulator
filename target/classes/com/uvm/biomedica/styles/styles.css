@@ -10,6 +10,11 @@
     -fx-text-base-color: #c9d1d9;
 }
 
+.menu-bar {
+    -fx-background-color: #1ABC9C;
+}
+
+
 /* Selección específica para el ToolBar */
 .tool-bar {
     -fx-background-color: #161b22 !important;

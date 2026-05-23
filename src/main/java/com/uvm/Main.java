@@ -1,4 +1,4 @@
-package org.uvm;
+package com.uvm;
 
 public class Main {
     public static void main(String[] args) {

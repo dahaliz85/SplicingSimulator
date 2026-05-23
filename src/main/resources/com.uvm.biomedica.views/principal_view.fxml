@@ -37,8 +37,9 @@
                         <Label styleClass="section-header" text="Wildtype | COL3A1" />
                         <TableView fx:id="tblCoordenadasSanas" styleClass="table-view" prefHeight="150.0">
                             <columns>
-                                <TableColumn fx:id="colExonSano" prefWidth="150.0" text="Elemento" />
-                                <TableColumn fx:id="colRangoSano" prefWidth="250.0" text="Coordenadas (NCBI)" />
+                                <TableColumn fx:id="colTipoSano" prefWidth="150.0" text="Tipo" />
+                                <TableColumn fx:id="colInicioSano" prefWidth="150.0" text="Inicio" />
+                                <TableColumn fx:id="colFinSano" prefWidth="250.0" text="Fin" />
                             </columns>
                         </TableView>
                         <TextArea fx:id="txtSecuenciaSana" editable="false" prefHeight="350.0" styleClass="sequence-text-area" wrapText="true" />
@@ -52,8 +53,9 @@
                         <Label styleClass="section-header" text="hEDS Variante | c.3818A&gt;G" />
                         <TableView fx:id="tblCoordenadasMutadas" prefHeight="150.0">
                             <columns>
-                                <TableColumn fx:id="colExonMutado" prefWidth="150.0" text="Elemento" />
-                                <TableColumn fx:id="colRangoMutado" prefWidth="250.0" text="Coordenadas (NCBI)" />
+                                <TableColumn fx:id="colTipoMut" prefWidth="150.0" text="Tipo" />
+                                <TableColumn fx:id="colInicioMut" prefWidth="150.0" text="Inicio" />
+                                <TableColumn fx:id="colFinMut" prefWidth="250.0" text="Fin" />
                             </columns>
                         </TableView>
                         <TextArea fx:id="txtSecuenciaMutada" editable="false" prefHeight="350.0" styleClass="sequence-text-area" wrapText="true" />

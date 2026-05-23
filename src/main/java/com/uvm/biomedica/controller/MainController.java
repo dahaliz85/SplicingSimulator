@@ -10,6 +10,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.nio.file.Files;
 
 public class MainController {
 
@@ -63,9 +67,10 @@ public class MainController {
      */
     @FXML
     void handleCargarSano() {
-        System.out.println("📂 Botón: Cargar archivo sano presionado.");
-        lblEstado.setText("● Cargando Gen Silvestre...");
-        // Aquí conectaremos tu clase de la carpeta 'util' para leer el archivo
+        File archivo = abrirSelectorArchivo();
+        if (archivo != null) {
+            leerArchivoYMostrar(archivo, txtSecuenciaSana, "Sano");
+        }
     }
 
     /**
@@ -73,9 +78,41 @@ public class MainController {
      */
     @FXML
     void handleCargarMutado() {
-        System.out.println("📂 Botón: Cargar archivo mutado presionado.");
-        lblEstado.setText("● Cargando Variante Mutada...");
-        // Aquí conectaremos tu clase de la carpeta 'util' para leer la mutación c.3818A>G
+        File archivo = abrirSelectorArchivo();
+        if (archivo != null) {
+            leerArchivoYMostrar(archivo, txtSecuenciaMutada, "Mutado");
+        }
+    }
+
+    /**
+     * Lógica para leer el archivo y actualizar la UI
+     */
+    private void leerArchivoYMostrar(File archivo, TextArea areaTexto, String tipo) {
+        try {
+            // Leemos el contenido
+            String contenido = Files.readString(archivo.toPath());
+
+            // Aquí puedes llamar a tu parser de GenBank después
+            areaTexto.setText(contenido);
+
+            lblEstado.setText("● " + tipo + " cargado: " + archivo.getName());
+
+        } catch (Exception e) {
+            lblEstado.setText("Error al cargar " + tipo);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Lógica compartida para abrir el selector
+     */
+    private File abrirSelectorArchivo() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar archivo GenBank");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Archivos GenBank", "*.gb", "*.gbk")
+        );
+        return fileChooser.showOpenDialog(null);
     }
 
     /**

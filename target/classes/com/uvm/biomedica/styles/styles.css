@@ -10,12 +10,36 @@
     -fx-text-base-color: #c9d1d9;
 }
 
+/* Selección específica para el ToolBar */
+.tool-bar {
+    -fx-background-color: #161b22 !important;
+    -fx-border-color: #30363d !important;
+    -fx-border-width: 0 0 1 0 !important;
+    -fx-background-insets: 0 !important;
+}
+
+/* Forzar el color de los elementos dentro del ToolBar */
+.tool-bar .button {
+    -fx-background-color: #21262d !important;
+    -fx-text-fill: #c9d1d9 !important;
+}
+
 /* 2. Barra Superior (El problema que teníamos) */
 .header-area {
     -fx-background-color: #161b22;
     -fx-padding: 15;
     -fx-border-color: #30363d;
     -fx-border-width: 0 0 1 0;
+}
+
+/* Forzar el fondo incluso si el HBox intenta ignorarlo */
+.header-area {
+    -fx-background: #161b22;
+}
+
+/* Etiquetas dentro de la barra superior */
+.header-area .label {
+    -fx-text-fill: #c9d1d9;
 }
 
 /* 3. Paneles de Datos */

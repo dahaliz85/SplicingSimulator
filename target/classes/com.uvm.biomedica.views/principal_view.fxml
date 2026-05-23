@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uvm.biomedica.controller.MainController">
+<BorderPane styleClass="border-pane-root" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uvm.biomedica.controller.MainController">
     <top>
-        <HBox fx:id="barraSuperior" alignment="CENTER_LEFT" spacing="20.0" styleClass="header-area" BorderPane.alignment="CENTER">
+        <HBox fx:id="header" alignment="CENTER_LEFT" spacing="20.0" styleClass="header-area" BorderPane.alignment="CENTER">
             <children>
                 <Label styleClass="app-title" text="🧬 COL3A1 Splicing Simulator v1.0" />
                 <Button fx:id="btnCargarSano" mnemonicParsing="false" onAction="#handleCargarSano" styleClass="btn-secondary" text="📂 Cargar Secuencia Sana" />

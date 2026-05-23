@@ -36,7 +36,7 @@ public class App extends Application {
         // -------------------------------
 
         Scene scene = new Scene(root, 1280, 720);
-        stage.setTitle("COL3A1 Splicing Analyzer - UVM Foro Estudiantil");
+        stage.setTitle("COL3A1 Splicing Analyzer");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

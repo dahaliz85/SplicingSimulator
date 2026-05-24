@@ -17,6 +17,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -93,13 +95,22 @@ public class MainController {
     @FXML
     private Label lblDiagnostico;
 
+    private Image imgEsperando;
+    private Image imgProcesando;
+    private Image imgCompletado;
+    private Image imgVariantDetected;
+
     /**
      * Este método se ejecuta automáticamente cuando JavaFX termina de cargar el FXML.
      * Aquí podemos configurar estados iniciales o limpiar componentes.
      */
     @FXML
     public void initialize() {
-        System.out.println("✅ Controlador de la UI inicializado con éxito.");
+
+       imgEsperando = new Image(getClass().getResource("/com/uvm/biomedica/icons/awaiting_file.png").toExternalForm());
+       imgProcesando = new Image(getClass().getResource("/com/uvm/biomedica/icons/splicing_process.png").toExternalForm());
+       imgCompletado = new Image(getClass().getResource("/com/uvm/biomedica/icons/simulation_completed.png").toExternalForm());
+       imgVariantDetected = new Image(getClass().getResource("/com/uvm/biomedica/icons/variant_detected.png").toExternalForm());
 
         header.setOnMousePressed(event -> {
             yOffset = event.getSceneY();
@@ -128,6 +139,27 @@ public class MainController {
         colTipoMut.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         colInicioMut.setCellValueFactory(new PropertyValueFactory<>("inicio"));
         colFinMut.setCellValueFactory(new PropertyValueFactory<>("fin"));
+
+        cambiarEstado("Sistema Iniciado", imgEsperando);
+
+    }
+
+    /**
+     * Método utilitario para cambiar el texto y el icono del Label de golpe
+     */
+    private void cambiarEstado(String texto, Image imagen) {
+        lblEstado.setText(texto);
+
+        if (imagen != null) {
+            ImageView view = new ImageView(imagen);
+            view.setFitWidth(16);  // Tamaño ideal para que no desfase el header
+            view.setFitHeight(16);
+            view.setPreserveRatio(true);
+
+            lblEstado.setGraphic(view); // Inyecta el icono/GIF en el Label
+        } else {
+            lblEstado.setGraphic(null);
+        }
     }
 
     @FXML
@@ -180,7 +212,7 @@ public class MainController {
                 // Asignamos a tu tabla (asegúrate de que el nombre sea el correcto)
                 tblCoordenadasSanas.setItems(itemsTabla);
 
-                lblEstado.setText("● Datos cargados: " + datos.size() + " segmentos identificados.");
+                lblEstado.setText("Datos cargados: " + datos.size() + " segmentos identificados.");
             } catch (Exception e) {
                 lblEstado.setText("Error al procesar el archivo.");
                 e.printStackTrace();
@@ -198,7 +230,7 @@ public class MainController {
             try {
                 List<FeatureGenetica> datos = procesarGenBank(archivo);
                 tblCoordenadasMutadas.getItems().setAll(datos);
-                lblEstado.setText("● Mutado cargado correctamente.");
+                lblEstado.setText("Mutado cargado correctamente.");
             } catch (Exception e) {
                 lblEstado.setText("Error al cargar el mutado.");
                 e.printStackTrace();
@@ -243,6 +275,8 @@ public class MainController {
     @FXML
     void handleEjecutarSimulacion() {
         try {
+
+            cambiarEstado(" Splicing en curso...", imgProcesando);
             // 1. Obtener los datos reales de tus tablas
             List<?> datosSanos = tblCoordenadasSanas.getItems();
             List<?> datosMutados = tblCoordenadasMutadas.getItems();
@@ -306,10 +340,13 @@ public class MainController {
 
             // Diagnóstico clínico dinámico basado en los datos procesados
             if (eficienciaMutadaFinal < 50.0) {
+                cambiarEstado(" Simulación completada", imgVariantDetected);
                 lblDiagnostico.setText("Diagnóstico: Exon Skipping Detectado (Variante Patogénica hEDS)");
             } else if (eficienciaMutadaFinal < 95.0) {
+                cambiarEstado(" Simulación completada", imgVariantDetected);
                 lblDiagnostico.setText("Diagnóstico: Eficiencia de Splicing Alterada (Variante Significativa)");
             } else {
+                cambiarEstado(" Simulación completada", imgCompletado);
                 lblDiagnostico.setText("Diagnóstico: Splicing Normal (Grupo Control / Variante Sin Impacto)");
             }
 
@@ -317,7 +354,7 @@ public class MainController {
             txtSecuenciaSana.setText(generarSecuenciaMaduraWildtype(datosSanos));
             txtSecuenciaMutada.setText(generarSecuenciaMadurahEDS(datosMutados));
 
-            lblEstado.setText("● Splicing procesado con éxito");
+
 
         } catch (Exception e) {
             e.printStackTrace();

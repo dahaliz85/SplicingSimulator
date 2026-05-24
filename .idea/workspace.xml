@@ -5,14 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9bfcd9c-a06d-4bcb-afed-fe4749723457" name="Changes" comment="Edicion de estilos para estetica.">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/analysis.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/light.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/awaiting_file.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/loading-bar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/loading_icon.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/open-folder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/simulation_completed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/splicing_process.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/up-loading.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/variant_detected.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/main/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.uvm.biomedica.views/principal_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/views/principal_view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com.uvm.biomedica.views/principal_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com.uvm.biomedica.views/principal_view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/views/principal_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/views/principal_view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/controller/MainController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +60,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.App.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -192,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779599070457</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Edicion de estilos para estetica.">
+      <option name="closed" value="true" />
+      <created>1779600912830</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1779600912831</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -207,6 +220,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Creacion de proyecto de simulacion de espliceosoma" />
     <MESSAGE value="Se agregaron los estilos para la app" />
     <MESSAGE value="Integracion de paquete model y clases del paquete" />

@@ -14,5 +14,4 @@ public abstract class FeatureGenetica {
     public int getInicio() { return inicio.get(); }
     public int getFin() { return fin.get(); }
 
-    public abstract String getTipo();
 }

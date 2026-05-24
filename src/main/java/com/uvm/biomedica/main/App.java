@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.net.URL;
+import java.util.Objects;
 
 public class App extends Application {
 
@@ -33,7 +34,7 @@ public class App extends Application {
         Parent root = fxmlLoader.load();
 
         // --- FUERZA LA CARGA DEL CSS ---
-        String css = this.getClass().getResource("/com/uvm/biomedica/styles/styles.css").toExternalForm();
+        String css = Objects.requireNonNull(this.getClass().getResource("/com/uvm/biomedica/styles/styles.css")).toExternalForm();
         root.getStylesheets().add(css);
         // -------------------------------
         stage.initStyle(StageStyle.UNDECORATED); // <--- Quita la barra blanca de Windows

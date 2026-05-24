@@ -14,7 +14,6 @@ public class Intervalo {
     // Agregamos getters por si los necesitas para tu tabla
     public int getInicio() { return inicio; }
     public int getFin() { return fin; }
-    public String getTipo() { return tipo; }
 
     @Override
     public String toString() {

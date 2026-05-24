@@ -21,7 +21,7 @@ public class GenomeParser {
         }
 
         // Ordenamos por posición por si el archivo no viene en orden
-        Collections.sort(exones, Comparator.comparingInt(e -> e.inicio));
+        exones.sort(Comparator.comparingInt(e -> e.inicio));
 
         // Lógica de detección de intrones (el "hueco" entre exones)
         for (int i = 0; i < exones.size() - 1; i++) {
@@ -37,7 +37,7 @@ public class GenomeParser {
         }
         // Agregar el último exón
         if (!exones.isEmpty()) {
-            listaResultante.add(exones.get(exones.size() - 1));
+            listaResultante.add(exones.getLast());
         }
 
         return listaResultante;

@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9bfcd9c-a06d-4bcb-afed-fe4749723457" name="Changes" comment="Edicion de estilos para estetica.">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/awaiting_file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/loading-bar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/loading_icon.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/open-folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/simulation_completed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/splicing_process.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/up-loading.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/variant_detected.png" afterDir="false" />
+    <list default="true" id="a9bfcd9c-a06d-4bcb-afed-fe4749723457" name="Changes" comment="Edicion de estilos para estetica. Adicion de iconos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/main/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/views/principal_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/views/principal_view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/controller/MainController.class" afterDir="false" />
     </list>
@@ -58,17 +51,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.App.executor": "Run",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Rebasing main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/dahaliz85/OneDrive/Documentos/UVM/4TO SEMESTRE/CARTEL/SplicingSimulator/src/main/resources/com/uvm/biomedica/styles/com/uvm/biomedica/icons"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Rebasing main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dahaliz85/OneDrive/Documentos/UVM/4TO SEMESTRE/CARTEL/SplicingSimulator/src/main/resources/com/uvm/biomedica/styles/com/uvm/biomedica/icons&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\dahaliz85\OneDrive\Documentos\UVM\4TO SEMESTRE\CARTEL\SplicingSimulator\src\main\resources\com\uvm\biomedica\styles\com\uvm\biomedica\icons" />
@@ -205,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779600912831</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Edicion de estilos para estetica. Adicion de iconos">
+      <option name="closed" value="true" />
+      <created>1779607128537</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1779607128537</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -228,6 +229,7 @@
     <MESSAGE value="Integracion de funcionalidad de splicing" />
     <MESSAGE value="Edicion de estilos para estetica. Desplazamiento de cuadro de resultados" />
     <MESSAGE value="Edicion de estilos para estetica." />
-    <option name="LAST_COMMIT_MESSAGE" value="Edicion de estilos para estetica." />
+    <MESSAGE value="Edicion de estilos para estetica. Adicion de iconos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edicion de estilos para estetica. Adicion de iconos" />
   </component>
 </project>

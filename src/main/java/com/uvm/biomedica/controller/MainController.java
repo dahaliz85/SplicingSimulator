@@ -2,15 +2,11 @@ package com.uvm.biomedica.controller;
 
 import com.uvm.biomedica.model.*;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -23,11 +19,9 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.nio.file.Files;
 
 import java.util.*;
 import java.util.regex.*;
@@ -40,22 +34,13 @@ public class MainController {
     @FXML private HBox header;
 
     // Componentes de la Barra Superior
-    @FXML
-    private Button btnCargarSano;
-    @FXML
-    private Button btnCargarMutado;
-    @FXML
-    private Button btnSimular;
+
     @FXML
     private Label lblEstado;
 
     // Componentes del Panel Izquierdo (Gen Sano)
     @FXML
     private TableView<FeatureGenetica> tblCoordenadasSanas;
-    @FXML
-    private TableColumn<?, ?> colExonSano;
-    @FXML
-    private TableColumn<?, ?> colRangoSano;
     @FXML
     private TextArea txtSecuenciaSana;
     @FXML
@@ -68,10 +53,6 @@ public class MainController {
     // Componentes del Panel Derecho (Variante Mutada)
     @FXML
     private TableView<FeatureGenetica> tblCoordenadasMutadas;
-    @FXML
-    private TableColumn<?, ?> colExonMutado;
-    @FXML
-    private TableColumn<?, ?> colRangoMutado;
     @FXML
     private TableColumn<FeatureGenetica, String> colTipoMut;
     @FXML
@@ -95,7 +76,6 @@ public class MainController {
     @FXML
     private Label lblDiagnostico;
 
-    private Image imgEsperando;
     private Image imgProcesando;
     private Image imgCompletado;
     private Image imgVariantDetected;
@@ -107,10 +87,10 @@ public class MainController {
     @FXML
     public void initialize() {
 
-       imgEsperando = new Image(getClass().getResource("/com/uvm/biomedica/icons/awaiting_file.png").toExternalForm());
-       imgProcesando = new Image(getClass().getResource("/com/uvm/biomedica/icons/splicing_process.png").toExternalForm());
-       imgCompletado = new Image(getClass().getResource("/com/uvm/biomedica/icons/simulation_completed.png").toExternalForm());
-       imgVariantDetected = new Image(getClass().getResource("/com/uvm/biomedica/icons/variant_detected.png").toExternalForm());
+       Image imgEsperando = new Image(Objects.requireNonNull(getClass().getResource("/com/uvm/biomedica/icons/awaiting_file.png")).toExternalForm());
+       imgProcesando = new Image(Objects.requireNonNull(getClass().getResource("/com/uvm/biomedica/icons/splicing_process.png")).toExternalForm());
+       imgCompletado = new Image(Objects.requireNonNull(getClass().getResource("/com/uvm/biomedica/icons/simulation_completed.png")).toExternalForm());
+       imgVariantDetected = new Image(Objects.requireNonNull(getClass().getResource("/com/uvm/biomedica/icons/variant_detected.png")).toExternalForm());
 
         header.setOnMousePressed(event -> {
             yOffset = event.getSceneY();
@@ -235,25 +215,6 @@ public class MainController {
                 lblEstado.setText("Error al cargar el mutado.");
                 e.printStackTrace();
             }
-        }
-    }
-
-    /**
-     * Lógica para leer el archivo y actualizar la UI
-     */
-    private void leerArchivoYMostrar(File archivo, TextArea areaTexto, String tipo) {
-        try {
-            // Leemos el contenido
-            String contenido = Files.readString(archivo.toPath());
-
-            // Aquí puedes llamar a tu parser de GenBank después
-            areaTexto.setText(contenido);
-
-            lblEstado.setText("● " + tipo + " cargado: " + archivo.getName());
-
-        } catch (Exception e) {
-            lblEstado.setText("Error al cargar " + tipo);
-            e.printStackTrace();
         }
     }
 
@@ -392,7 +353,6 @@ public class MainController {
     }
 
     private List<FeatureGenetica> procesarGenBank(File archivo) throws Exception {
-        List<FeatureGenetica> listaFeatures = new ArrayList<>();
         List<ExonData> exones = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
@@ -411,7 +371,7 @@ public class MainController {
         exones.sort(Comparator.comparingInt(ExonData::getInicio));
 
         // Agregar exones a la lista final
-        listaFeatures.addAll(exones);
+        List<FeatureGenetica> listaFeatures = new ArrayList<>(exones);
 
         // Deducir intrones entre los exones
         for (int i = 0; i < exones.size() - 1; i++) {

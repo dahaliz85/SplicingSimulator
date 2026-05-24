@@ -26,6 +26,7 @@ import java.io.FileReader;
 import java.util.*;
 import java.util.regex.*;
 
+@SuppressWarnings("ALL")
 public class MainController {
 
     private double yOffset = 0;
@@ -313,9 +314,7 @@ public class MainController {
 
             // Llenar los text areas modulares que creamos antes
             txtSecuenciaSana.setText(generarSecuenciaMaduraWildtype(datosSanos));
-            txtSecuenciaMutada.setText(generarSecuenciaMadurahEDS(datosMutados));
-
-
+            txtSecuenciaMutada.setText(generarSecuenciaMadurahEDS(datosMutados, eficienciaMutadaFinal));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -325,8 +324,7 @@ public class MainController {
     // Método auxiliar para comparar matemáticamente las dos listas de la interfaz
     private double calcularDiferenciaEstructural(List<?> listaSana, List<?> listaMutada) {
         if (listaSana.size() != listaMutada.size()) {
-            // Si el número de intrones/exones cambió, hay una alteración severa (Exon Skipping)
-            return 0.85; // Penaliza un 85% la eficiencia
+            return 0.85; // Si el conteo de intrones/exones cambia, hay Exon Skipping severo
         }
 
         double desvios = 0;
@@ -336,20 +334,21 @@ public class MainController {
             Object sano = listaSana.get(i);
             Object mutado = listaMutada.get(i);
 
-            if (sano instanceof com.uvm.biomedica.model.Intervalo && mutado instanceof com.uvm.biomedica.model.Intervalo) {
-                com.uvm.biomedica.model.Intervalo s = (com.uvm.biomedica.model.Intervalo) sano;
-                com.uvm.biomedica.model.Intervalo m = (com.uvm.biomedica.model.Intervalo) mutado;
+            // Usamos la clase base real de tus objetos
+            if (sano instanceof FeatureGenetica && mutado instanceof FeatureGenetica) {
+                FeatureGenetica s = (FeatureGenetica) sano;
+                FeatureGenetica m = (FeatureGenetica) mutado;
 
-                // Si las coordenadas difieren, calculamos el impacto
+                // Si las coordenadas difieren en el disco, calculamos el impacto real
                 if (s.getInicio() != m.getInicio() || s.getFin() != m.getFin()) {
-                    desvios += 0.15; // Añade penalización por cada intervalo desalineado
+                    desvios += 0.15;
                 }
                 elementosComparados++;
             }
         }
 
         if (elementosComparados == 0) return 0.0;
-        return Math.min(0.90, desvios / elementosComparados); // Retorna el porcentaje de cambio matemático
+        return Math.min(0.90, desvios / elementosComparados);
     }
 
     private List<FeatureGenetica> procesarGenBank(File archivo) throws Exception {
@@ -404,16 +403,21 @@ public class MainController {
         return sb.toString();
     }
 
-    private String generarSecuenciaMadurahEDS(List<?> itemsMutados) {
+    private String generarSecuenciaMadurahEDS(List<?> itemsMutados, double eficienciaFinal) {
         StringBuilder sb = new StringBuilder();
         int contadorExon = 1;
+
+        // Evaluamos dinámicamente si la eficiencia bajó del umbral normal
+        String etiquetaVariante = (eficienciaFinal < 95.0)
+                ? " [Variante hEDS c.3818A>G - Exon Skipping Alteration] "
+                : " [Secuencia Codificante Spliced COL3A1 - Grupo Control] ";
 
         for (Object item : itemsMutados) {
             if (item instanceof com.uvm.biomedica.model.ExonData) {
                 com.uvm.biomedica.model.ExonData exon = (com.uvm.biomedica.model.ExonData) item;
                 sb.append("> EXÓN ").append(contadorExon)
                         .append(" [").append(exon.getInicio()).append("-").append(exon.getFin()).append("]\n")
-                        .append("  ATGCGTAC... [Variante hEDS c.3818A>G - Exon Skipping Alteration] ...TGA\n\n");
+                        .append("  ATGCGTAC...").append(etiquetaVariante).append("...TGA\n\n");
                 contadorExon++;
             }
         }

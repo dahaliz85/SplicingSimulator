@@ -1,3 +1,4 @@
+com\uvm\biomedica\util\Constants.class
 com\uvm\Main.class
 com\uvm\biomedica\model\FeatureGenetica.class
 com\uvm\biomedica\service\GenomeParser.class

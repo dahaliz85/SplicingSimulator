@@ -2,6 +2,7 @@ package com.uvm.biomedica.controller;
 
 import com.uvm.biomedica.model.*;
 
+import com.uvm.biomedica.util.Constants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,8 +30,8 @@ import java.util.regex.*;
 @SuppressWarnings("ALL")
 public class MainController {
 
-    private double yOffset = 0;
-    private double xOffset = 0;
+    private double yOffset = Constants.INITIAL_OFFSET;
+    private double xOffset = Constants.INITIAL_OFFSET;
 
     @FXML private HBox header;
 
@@ -88,10 +89,10 @@ public class MainController {
     @FXML
     public void initialize() {
 
-       Image imgEsperando = new Image(Objects.requireNonNull(getClass().getResource("/com/uvm/biomedica/icons/awaiting_file.png")).toExternalForm());
-       imgProcesando = new Image(Objects.requireNonNull(getClass().getResource("/com/uvm/biomedica/icons/splicing_process.png")).toExternalForm());
-       imgCompletado = new Image(Objects.requireNonNull(getClass().getResource("/com/uvm/biomedica/icons/simulation_completed.png")).toExternalForm());
-       imgVariantDetected = new Image(Objects.requireNonNull(getClass().getResource("/com/uvm/biomedica/icons/variant_detected.png")).toExternalForm());
+       Image imgEsperando = new Image(Objects.requireNonNull(getClass().getResource(Constants.ICONS_PATH+Constants.ICONS_ICON_AWAITING_FILE+Constants.ICONS_ICON_EXTENSION)).toExternalForm());
+       imgProcesando = new Image(Objects.requireNonNull(getClass().getResource(Constants.ICONS_PATH+Constants.ICONS_ICON_SPLICING_PROCESS+Constants.ICONS_ICON_EXTENSION)).toExternalForm());
+       imgCompletado = new Image(Objects.requireNonNull(getClass().getResource(Constants.ICONS_PATH+Constants.ICONS_ICON_SIMULATION_COMPLETED+Constants.ICONS_ICON_EXTENSION)).toExternalForm());
+       imgVariantDetected = new Image(Objects.requireNonNull(getClass().getResource(Constants.ICONS_PATH+Constants.ICONS_ICON_VARIANT_DETECTED+Constants.ICONS_ICON_EXTENSION)).toExternalForm());
 
         header.setOnMousePressed(event -> {
             yOffset = event.getSceneY();
@@ -105,23 +106,23 @@ public class MainController {
         });
 
         // Configuramos un texto inicial amigable en las consolas de ADN
-        txtSecuenciaSana.setText("Use el botón superior para cargar el archivo FASTA del gen silvestre (Sano)...");
-        txtSecuenciaMutada.setText("Use el botón superior para cargar el archivo FASTA con la variante hEDS...");
+        txtSecuenciaSana.setText(Constants.INSTRUCTIONS_HEALTH_SEQUENCE);
+        txtSecuenciaMutada.setText(Constants.INSTRUCTIONS_MUTATED_SEQUENCE);
 
         // Inicializar la gráfica con un contenedor de datos vacío para que no se vea rota
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
-        series.setName("Progreso de Monte Carlo");
+        series.setName(Constants.LBL_MONTE_CARLO_PROGRESS);
         chrConvergencia.getData().add(series);
 
-        colTipoSano.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        colInicioSano.setCellValueFactory(new PropertyValueFactory<>("inicio"));
-        colFinSano.setCellValueFactory(new PropertyValueFactory<>("fin"));
+        colTipoSano.setCellValueFactory(new PropertyValueFactory<>(Constants.TBL_COL_HEADER_TIPO));
+        colInicioSano.setCellValueFactory(new PropertyValueFactory<>(Constants.TBL_COL_HEADER_START));
+        colFinSano.setCellValueFactory(new PropertyValueFactory<>(Constants.TBL_COL_HEADER_END));
 
-        colTipoMut.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        colInicioMut.setCellValueFactory(new PropertyValueFactory<>("inicio"));
-        colFinMut.setCellValueFactory(new PropertyValueFactory<>("fin"));
+        colTipoMut.setCellValueFactory(new PropertyValueFactory<>(Constants.TBL_COL_HEADER_TIPO));
+        colInicioMut.setCellValueFactory(new PropertyValueFactory<>(Constants.TBL_COL_HEADER_START));
+        colFinMut.setCellValueFactory(new PropertyValueFactory<>(Constants.TBL_COL_HEADER_END));
 
-        cambiarEstado("Sistema Iniciado", imgEsperando);
+        cambiarEstado(Constants.LBL_STATUS_STARTED_SYSTEM, imgEsperando);
 
     }
 
@@ -133,8 +134,8 @@ public class MainController {
 
         if (imagen != null) {
             ImageView view = new ImageView(imagen);
-            view.setFitWidth(16);  // Tamaño ideal para que no desfase el header
-            view.setFitHeight(16);
+            view.setFitWidth(Constants.ICON_FIT_WIDTH);  // Tamaño ideal para que no desfase el header
+            view.setFitHeight(Constants.ICON_FIT_HEIGHT);
             view.setPreserveRatio(true);
 
             lblEstado.setGraphic(view); // Inyecta el icono/GIF en el Label
@@ -193,9 +194,9 @@ public class MainController {
                 // Asignamos a tu tabla (asegúrate de que el nombre sea el correcto)
                 tblCoordenadasSanas.setItems(itemsTabla);
 
-                lblEstado.setText("Datos cargados: " + datos.size() + " segmentos identificados.");
+                lblEstado.setText( Constants.LBL_STATUS_LOADED_DATA+ datos.size() + Constants.LBL_STATUS_IDENTIFIED_SEGMENTS);
             } catch (Exception e) {
-                lblEstado.setText("Error al procesar el archivo.");
+                lblEstado.setText(Constants.LBL_STATUS_HEALTH_FILE_ERROR);
                 e.printStackTrace();
             }
         }
@@ -211,9 +212,9 @@ public class MainController {
             try {
                 List<FeatureGenetica> datos = procesarGenBank(archivo);
                 tblCoordenadasMutadas.getItems().setAll(datos);
-                lblEstado.setText("Mutado cargado correctamente.");
+                lblEstado.setText(Constants.LBL_STATUS_MUTATED_LOADED_DATA);
             } catch (Exception e) {
-                lblEstado.setText("Error al cargar el mutado.");
+                lblEstado.setText(Constants.LBL_STATUS_MUTATED_FILE_ERROR);
                 e.printStackTrace();
             }
         }
@@ -238,13 +239,13 @@ public class MainController {
     void handleEjecutarSimulacion() {
         try {
 
-            cambiarEstado(" Splicing en curso...", imgProcesando);
+            cambiarEstado(Constants.LBL_STATUS_PROCESSING_SPLICING, imgProcesando);
             // 1. Obtener los datos reales de tus tablas
             List<?> datosSanos = tblCoordenadasSanas.getItems();
             List<?> datosMutados = tblCoordenadasMutadas.getItems();
 
             if (datosSanos.isEmpty() || datosMutados.isEmpty()) {
-                lblEstado.setText("❌ Carga ambos archivos antes de simular.");
+                lblEstado.setText(Constants.LBL_STATUS_MISSING_FILE_ERROR);
                 return;
             }
 
@@ -270,10 +271,10 @@ public class MainController {
             chrConvergencia.getData().clear();
 
             XYChart.Series<Number, Number> serieSana = new XYChart.Series<>();
-            serieSana.setName("Secuencia Wildtype");
+            serieSana.setName(Constants.LBL_CHART_HEALTH_SERIES);
 
             XYChart.Series<Number, Number> serieMutada = new XYChart.Series<>();
-            serieMutada.setName("Secuencia Analizada");
+            serieMutada.setName(Constants.LBL_CHART_MUTATED_SERIES);
 
             java.util.Random random = new java.util.Random();
 
@@ -297,19 +298,19 @@ public class MainController {
             chrConvergencia.getData().addAll(serieSana, serieMutada);
 
             // 5. Actualizar la UI con los resultados del procesamiento real
-            lblEficienciaSana.setText(String.format("[ Eficiencia Sano: %.2f%% ]", eficienciaSanaFinal));
-            lblEficienciaMutada.setText(String.format("[ Eficiencia Mutado: %.2f%% ]", eficienciaMutadaFinal));
+            lblEficienciaSana.setText(String.format(Constants.LBL_CONTROL_GROUP_EFFICIENCY, eficienciaSanaFinal));
+            lblEficienciaMutada.setText(String.format(Constants.LBL_TEST_GROUP_EFFICIENCY, eficienciaMutadaFinal));
 
             // Diagnóstico clínico dinámico basado en los datos procesados
             if (eficienciaMutadaFinal < 50.0) {
-                cambiarEstado(" Simulación completada", imgVariantDetected);
-                lblDiagnostico.setText("Diagnóstico: Exon Skipping Detectado (Variante Patogénica hEDS)");
+                cambiarEstado(Constants.LBL_SIMULATION_COMPLETED, imgVariantDetected);
+                lblDiagnostico.setText(Constants.LBL_PATHOGENIC_VARIANT_DIAGNOSIS);
             } else if (eficienciaMutadaFinal < 95.0) {
-                cambiarEstado(" Simulación completada", imgVariantDetected);
-                lblDiagnostico.setText("Diagnóstico: Eficiencia de Splicing Alterada (Variante Significativa)");
+                cambiarEstado(Constants.LBL_SIMULATION_COMPLETED, imgVariantDetected);
+                lblDiagnostico.setText(Constants.LBL_ALTERED_DIAGNOSIS);
             } else {
-                cambiarEstado(" Simulación completada", imgCompletado);
-                lblDiagnostico.setText("Diagnóstico: Splicing Normal (Grupo Control / Variante Sin Impacto)");
+                cambiarEstado(Constants.LBL_SIMULATION_COMPLETED, imgCompletado);
+                lblDiagnostico.setText(Constants.LBL_NORMAL_DIAGNOSIS);
             }
 
             // Llenar los text areas modulares que creamos antes
@@ -356,7 +357,7 @@ public class MainController {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String linea;
-            Pattern patron = Pattern.compile("exon\\s+(\\d+)\\.\\.(\\d+)");
+            Pattern patron = Pattern.compile(Constants.RGX_EXON_DATA);
 
             while ((linea = reader.readLine()) != null) {
                 Matcher m = patron.matcher(linea);
@@ -394,9 +395,9 @@ public class MainController {
         for (Object item : itemsSanos) {
             if (item instanceof com.uvm.biomedica.model.ExonData) {
                 com.uvm.biomedica.model.ExonData exon = (com.uvm.biomedica.model.ExonData) item;
-                sb.append("> EXÓN ").append(contadorExon)
+                sb.append(Constants.TXT_EXON_POINT).append(contadorExon)
                         .append(" [").append(exon.getInicio()).append("-").append(exon.getFin()).append("]\n")
-                        .append("  ATGCGTAC... [Secuencia Codificante Spliced COL3A1] ...TGA\n\n");
+                        .append(Constants.TXT_EXON_CODIFICANT_SEQUENCE);
                 contadorExon++;
             }
         }
@@ -409,19 +410,18 @@ public class MainController {
 
         // Evaluamos dinámicamente si la eficiencia bajó del umbral normal
         String etiquetaVariante = (eficienciaFinal < 95.0)
-                ? " [Variante hEDS c.3818A>G - Exon Skipping Alteration] "
-                : " [Secuencia Codificante Spliced COL3A1 - Grupo Control] ";
+                ? Constants.TXT_VARIANT_ALTERATION
+                : Constants.TXT_NORMAL_SEQUENCE;
 
         for (Object item : itemsMutados) {
             if (item instanceof com.uvm.biomedica.model.ExonData) {
                 com.uvm.biomedica.model.ExonData exon = (com.uvm.biomedica.model.ExonData) item;
-                sb.append("> EXÓN ").append(contadorExon)
+                sb.append(Constants.TXT_EXON_POINT).append(contadorExon)
                         .append(" [").append(exon.getInicio()).append("-").append(exon.getFin()).append("]\n")
-                        .append("  ATGCGTAC...").append(etiquetaVariante).append("...TGA\n\n");
+                        .append("  ").append(etiquetaVariante).append("\n\n");
                 contadorExon++;
             }
         }
         return sb.toString();
     }
-
 }

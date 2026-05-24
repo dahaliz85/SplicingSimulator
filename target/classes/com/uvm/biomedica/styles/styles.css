@@ -1,40 +1,8 @@
 /* ==========================================================
-   COL3A1 Splicing Simulator - Master Stylesheet
+   COL3A1 Splicing Simulator - Master Stylesheet (Depurada)
    ========================================================== */
 
-/* 1. Fondo Global y Tipografía */
-
-/* Estilo general para botones de ventana (minimizar/maximizar) */
-.window-btn {
-   -fx-background-color: transparent;
-       -fx-text-fill: #8fa3b3;
-       -fx-font-size: 13px;
-       -fx-pref-width: 45px;
-       -fx-pref-height: 32px;
-       -fx-alignment: CENTER;
-       -fx-cursor: hand;
-}
-
-.window-btn:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.08);
-        -fx-text-fill: #ffffff;
-}
-
-/* Estilo específico para el botón de cerrar */
-.window-btn-close {
-  -fx-background-color: transparent;
-      -fx-text-fill: #8fa3b3;
-      -fx-font-size: 13px;
-      -fx-pref-width: 45px;
-      -fx-pref-height: 32px;
-      -fx-alignment: CENTER;
-      -fx-cursor: hand;
-}
-
-.window-btn-close:hover {
-   -fx-background-color: #e81123;
-       -fx-text-fill: #ffffff;
-}
+/* 1. Fondo Global y Tipografía Base */
 .root {
     -fx-base: #0d1117;
     -fx-background-color: #0d1117;
@@ -42,12 +10,22 @@
     -fx-text-base-color: #c9d1d9;
 }
 
+/* 2. Barra Superior y Contenedores Base */
+.header-area {
+    -fx-background-color: #161b22;
+    -fx-padding: 10 0 10 20; /* Ajuste para pegar botones al ras derecho */
+    -fx-border-color: #30363d;
+    -fx-border-width: 0 0 1 0;
+}
+
+.header-area .label {
+    -fx-text-fill: #c9d1d9;
+}
+
 .menu-bar {
     -fx-background-color: #1ABC9C;
 }
 
-
-/* Selección específica para el ToolBar */
 .tool-bar {
     -fx-background-color: #161b22 !important;
     -fx-border-color: #30363d !important;
@@ -55,64 +33,31 @@
     -fx-background-insets: 0 !important;
 }
 
-/* Forzar el color de los elementos dentro del ToolBar */
 .tool-bar .button {
     -fx-background-color: #21262d !important;
     -fx-text-fill: #c9d1d9 !important;
 }
 
-/* 2. Barra Superior (El problema que teníamos) */
-.header-area {
-    -fx-background-color: #161b22;
-    -fx-padding: 15;
-    -fx-border-color: #30363d;
-    -fx-border-width: 0 0 1 0;
-}
-
-/* Botones de ventana (Minimizar y Maximizar) */
-.header-area .window-btn {
+/* 3. Botones de la Ventana Personalizada (Homologados Uniformes) */
+.button.window-btn,
+.button.window-btn-close {
     -fx-background-color: transparent !important;
     -fx-text-fill: #ffffff !important;
-    -fx-font-size: 12px !important;
-    -fx-pref-width: 46px !important;
-    -fx-pref-height: 32px !important;
+    -fx-font-size: 11px !important;
+    -fx-pref-width: 45px !important;
+    -fx-pref-height: 30px !important;
+    -fx-background-radius: 0 !important;
     -fx-alignment: CENTER !important;
     -fx-cursor: hand !important;
 }
 
-/* Botón de ventana (Cerrar) */
-.header-area .window-btn-close {
-    -fx-background-color: transparent !important;
-    -fx-text-fill: #ffffff !important;
-    -fx-font-size: 12px !important;
-    -fx-pref-width: 46px !important;
-    -fx-pref-height: 32px !important;
-    -fx-alignment: CENTER !important;
-    -fx-cursor: hand !important;
-}
-
-/* EFECTO HOVER: Rojo clásico institucional */
-.header-area .window-btn-close:hover {
-    -fx-background-color: #e81123 !important;
-    -fx-text-fill: #ffffff !important;
-}
-
-/* EFECTO HOVER: Forzamos el color gris azulado traslúcido de Windows */
-.header-area .window-btn:hover {
+/* EFECTO HOVER UNIFORME: Los tres botones reaccionan igual al gris traslúcido de Windows */
+.button.window-btn:hover,
+.button.window-btn-close:hover {
     -fx-background-color: rgba(255, 255, 255, 0.15) !important;
 }
 
-/* Forzar el fondo incluso si el HBox intenta ignorarlo */
-.header-area {
-    -fx-background: #161b22;
-}
-
-/* Etiquetas dentro de la barra superior */
-.header-area .label {
-    -fx-text-fill: #c9d1d9;
-}
-
-/* 3. Paneles de Datos */
+/* 4. Paneles de Secuencias, Datos y Campos de Texto */
 .table-view, .text-area {
     -fx-background-color: #161b22;
     -fx-control-inner-background: #161b22;
@@ -120,7 +65,7 @@
     -fx-border-radius: 5;
 }
 
-/* 4. Tablas (Headers y Celdas) */
+/* 5. Estructura de Tablas (Headers y Celdas Alineadas) */
 .table-view .column-header,
 .table-view .column-header-background {
     -fx-background-color: #21262d;
@@ -131,10 +76,10 @@
     -fx-alignment: CENTER;
 }
 
-/* Centra el texto de todas las celdas y les da un margen para que no se peguen a los bordes */
+/* Solución visual: Centra datos y añade padding lateral para evitar confusiones */
 .table-view .table-cell {
-    -fx-alignment: CENTER; /* Cambia a CENTER-RIGHT si prefieres alineación numérica a la derecha */
-    -fx-padding: 0 15 0 15; /* Añade espacio a los lados (arriba derecha abajo izquierda) */
+    -fx-alignment: CENTER;
+    -fx-padding: 0 15 0 15;
 }
 
 .table-view .table-row-cell {
@@ -142,7 +87,7 @@
     -fx-text-fill: #c9d1d9;
 }
 
-/* 5. Cuadro de Resultados (Esquina inferior derecha) */
+/* 6. Cuadro de Resultados Clínicos (Barra Inferior) */
 .results-box {
     -fx-background-color: #161b22;
     -fx-border-color: #38bdf8;
@@ -151,7 +96,7 @@
     -fx-padding: 15;
 }
 
-/* 6. Títulos de sección */
+/* 7. Estilos de Texto y Encabezados de Sección */
 .section-header {
     -fx-text-fill: #38bdf8;
     -fx-font-size: 16px;

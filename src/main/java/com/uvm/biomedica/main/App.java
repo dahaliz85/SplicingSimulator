@@ -18,7 +18,7 @@ public class App extends Application {
 
         // Intento 2: Por si acaso las carpetas se crearon planas con puntos
         if (fxmlLocation == null) {
-            fxmlLocation = getClass().getResource("/com.uvm.biomedica.views/principal_view.fxml");
+            fxmlLocation = getClass().getResource("/com/uvm/biomedica/views/principal_view.fxml");
         }
 
         // Si ambos fallan, te arrojará este mensaje claro en la consola para saber qué pasó

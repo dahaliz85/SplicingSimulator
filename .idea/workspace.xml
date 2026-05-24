@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9bfcd9c-a06d-4bcb-afed-fe4749723457" name="Changes" comment="Edicion de estilos para estetica. Desplazamiento de cuadro de resultados">
+    <list default="true" id="a9bfcd9c-a06d-4bcb-afed-fe4749723457" name="Changes" comment="Edicion de estilos para estetica.">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/analysis.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/icons/light.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/main/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uvm/biomedica/main/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.uvm.biomedica.views/principal_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.uvm.biomedica.views/principal_view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.uvm.biomedica.views/principal_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/views/principal_view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/uvm/biomedica/styles/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com.uvm.biomedica.views/principal_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com.uvm.biomedica.views/principal_view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/main/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/main/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/uvm/biomedica/styles/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,12 +61,18 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Rebasing main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/dahaliz85/OneDrive/Documentos/UVM/4TO SEMESTRE/CARTEL/SplicingSimulator/target/classes/com.uvm.biomedica.views/principal_view.fxml"
+    "last_opened_file_path": "C:/Users/dahaliz85/OneDrive/Documentos/UVM/4TO SEMESTRE/CARTEL/SplicingSimulator/src/main/resources/com/uvm/biomedica/styles/com/uvm/biomedica/icons"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\dahaliz85\OneDrive\Documentos\UVM\4TO SEMESTRE\CARTEL\SplicingSimulator\src\main\resources\com\uvm\biomedica\styles\com\uvm\biomedica\icons" />
       <recent name="C:\Users\dahaliz85\OneDrive\Documentos\UVM\4TO SEMESTRE\CARTEL\SplicingSimulator" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dahaliz85\OneDrive\Documentos\UVM\4TO SEMESTRE\CARTEL\SplicingSimulator\src\main\resources\com\uvm\biomedica\icons" />
+      <recent name="C:\Users\dahaliz85\OneDrive\Documentos\UVM\4TO SEMESTRE\CARTEL\SplicingSimulator\src\main\resources\com\uvm\biomedica\views" />
+      <recent name="C:\Users\dahaliz85\OneDrive\Documentos\UVM\4TO SEMESTRE\CARTEL\SplicingSimulator\src\main\resources" />
     </key>
   </component>
   <component name="RunManager">
@@ -179,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779596053927</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Edicion de estilos para estetica.">
+      <option name="closed" value="true" />
+      <created>1779599070457</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1779599070457</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -200,6 +213,7 @@
     <MESSAGE value="Integracion de funcionalidad de carga de informacion en tablas" />
     <MESSAGE value="Integracion de funcionalidad de splicing" />
     <MESSAGE value="Edicion de estilos para estetica. Desplazamiento de cuadro de resultados" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edicion de estilos para estetica. Desplazamiento de cuadro de resultados" />
+    <MESSAGE value="Edicion de estilos para estetica." />
+    <option name="LAST_COMMIT_MESSAGE" value="Edicion de estilos para estetica." />
   </component>
 </project>

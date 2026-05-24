@@ -63,6 +63,13 @@
 
 .table-view .column-header .label {
     -fx-text-fill: white;
+    -fx-alignment: CENTER;
+}
+
+/* Centra el texto de todas las celdas y les da un margen para que no se peguen a los bordes */
+.table-view .table-cell {
+    -fx-alignment: CENTER; /* Cambia a CENTER-RIGHT si prefieres alineación numérica a la derecha */
+    -fx-padding: 0 15 0 15; /* Añade espacio a los lados (arriba derecha abajo izquierda) */
 }
 
 .table-view .table-row-cell {

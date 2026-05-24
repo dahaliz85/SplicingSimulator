@@ -1,6 +1,8 @@
 com\uvm\Main.class
 com\uvm\biomedica\model\FeatureGenetica.class
+com\uvm\biomedica\service\GenomeParser.class
 com\uvm\biomedica\model\ExonData.class
 com\uvm\biomedica\main\App.class
+com\uvm\biomedica\model\Intervalo.class
 com\uvm\biomedica\model\IntronData.class
 com\uvm\biomedica\controller\MainController.class

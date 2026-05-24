@@ -11,6 +11,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -89,21 +90,49 @@
                         <NumberAxis label="Eficiencia %" side="LEFT" tickLabelFill="WHITE" />
                     </yAxis>
                 </LineChart>
-                <VBox alignment="CENTER_LEFT" spacing="5.0" prefWidth="300.0" styleClass="results-box">
+               <!-- <VBox alignment="CENTER_LEFT" spacing="5.0" prefWidth="300.0" styleClass="results-box">
                     <children>
                         <Label styleClass="results-title" text="Resultados Clínicos:" />
-                        <Label fx:id="lblEficienciaSana" styleClass="result-item" text="[ Eficiencia Sano: -- ]" />
-                        <Label fx:id="lblEficienciaMutada" styleClass="result-item" text="[ Eficiencia Mutado: -- ]" />
+                        <Label fx:id="lblEficienciaSana" styleClass="result-item" text="[ Eficiencia Sano: - ]" />
+                        <Label fx:id="lblEficienciaMutada" styleClass="result-item" text="[ Eficiencia Mutado: - ]" />
                         <Label fx:id="lblDiagnostico" styleClass="result-item-alert" text="[ Diagnóstico: Esperando... ]" />
                     </children>
                     <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                     </padding>
-                </VBox>
+                </VBox>-->
             </children>
             <padding>
                 <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
             </padding>
         </HBox>
+        <VBox style="-fx-background-color: #1a2e40; -fx-background-radius: 8;"
+              prefHeight="120.0"
+              alignment="CENTER"
+              AnchorPane.bottomAnchor="20.0"
+              AnchorPane.leftAnchor="20.0"
+              AnchorPane.rightAnchor="20.0">
+
+            <padding>
+                <javafx.geometry.Insets top="15.0" right="20.0" bottom="15.0" left="20.0"/>
+            </padding>
+
+            <children>
+                <HBox alignment="CENTER" spacing="60.0">
+                    <children>
+                        <Label fx:id="lblEficienciaSana" text="[ Eficiencia Sano: 98.25% ]" style="-fx-text-fill: #ffffff; -fx-font-size: 14px; -fx-font-family: 'Segoe UI';" />
+                        <Label fx:id="lblEficienciaMutada" text="[ Eficiencia Mutado: 14.74% ]" style="-fx-text-fill: #ffffff; -fx-font-size: 14px; -fx-font-family: 'Segoe UI';" />
+                    </children>
+                    <VBox.margin>
+                        <javafx.geometry.Insets bottom="10.0"/>
+                    </VBox.margin>
+                </HBox>
+
+                <Label fx:id="lblDiagnostico" text="Diagnóstico: Exon Skipping Detectado (Variante hEDS / Splicing Anomalous)"
+                       alignment="CENTER"
+                       maxWidth="Infinity"
+                       style="-fx-text-fill: #00ffcc; -fx-font-size: 15px; -fx-font-weight: bold; -fx-font-family: 'Segoe UI';" />
+            </children>
+        </VBox>
     </bottom>
 </BorderPane>

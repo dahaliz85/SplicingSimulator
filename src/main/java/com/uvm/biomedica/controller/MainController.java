@@ -17,7 +17,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
@@ -29,6 +31,11 @@ import java.util.*;
 import java.util.regex.*;
 
 public class MainController {
+
+    private double yOffset = 0;
+    private double xOffset = 0;
+
+    @FXML private HBox header;
 
     // Componentes de la Barra Superior
     @FXML
@@ -94,6 +101,17 @@ public class MainController {
     public void initialize() {
         System.out.println("✅ Controlador de la UI inicializado con éxito.");
 
+        header.setOnMousePressed(event -> {
+            yOffset = event.getSceneY();
+            xOffset = event.getSceneX();
+        });
+
+        header.setOnMouseDragged(event -> {
+            Stage stage = (Stage) header.getScene().getWindow();
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
+
         // Configuramos un texto inicial amigable en las consolas de ADN
         txtSecuenciaSana.setText("Use el botón superior para cargar el archivo FASTA del gen silvestre (Sano)...");
         txtSecuenciaMutada.setText("Use el botón superior para cargar el archivo FASTA con la variante hEDS...");
@@ -110,6 +128,40 @@ public class MainController {
         colTipoMut.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         colInicioMut.setCellValueFactory(new PropertyValueFactory<>("inicio"));
         colFinMut.setCellValueFactory(new PropertyValueFactory<>("fin"));
+    }
+
+    @FXML
+    private void handleClose() {
+        javafx.application.Platform.exit();
+        System.exit(0);
+    }
+
+    @FXML
+    private void handleMinimize() {
+        // Como quitamos el evento, usamos el 'header' (u otro componente inyectado)
+        // para obtener la ventana actual de forma segura
+        javafx.stage.Stage stage = (javafx.stage.Stage) header.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    private void handleMaximize() {
+        javafx.stage.Stage stage = (javafx.stage.Stage) header.getScene().getWindow();
+        javafx.geometry.Rectangle2D bounds = javafx.stage.Screen.getPrimary().getVisualBounds();
+
+        if (stage.getWidth() == bounds.getWidth() && stage.getHeight() == bounds.getHeight()) {
+            // Restaurar al tamaño ideal del simulador
+            stage.setX(bounds.getMinX() + (bounds.getWidth() - 1280) / 2);
+            stage.setY(bounds.getMinY() + (bounds.getHeight() - 850) / 2);
+            stage.setWidth(1280);
+            stage.setHeight(850);
+        } else {
+            // Maximizar al área segura
+            stage.setX(bounds.getMinX());
+            stage.setY(bounds.getMinY());
+            stage.setWidth(bounds.getWidth());
+            stage.setHeight(bounds.getHeight());
+        }
     }
 
     /**
@@ -264,6 +316,8 @@ public class MainController {
             // Llenar los text areas modulares que creamos antes
             txtSecuenciaSana.setText(generarSecuenciaMaduraWildtype(datosSanos));
             txtSecuenciaMutada.setText(generarSecuenciaMadurahEDS(datosMutados));
+
+            lblEstado.setText("● Splicing procesado con éxito");
 
         } catch (Exception e) {
             e.printStackTrace();

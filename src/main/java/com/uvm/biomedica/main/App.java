@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.net.URL;
 
 public class App extends Application {
@@ -34,7 +36,7 @@ public class App extends Application {
         String css = this.getClass().getResource("/com/uvm/biomedica/styles/styles.css").toExternalForm();
         root.getStylesheets().add(css);
         // -------------------------------
-
+        stage.initStyle(StageStyle.UNDECORATED); // <--- Quita la barra blanca de Windows
         Scene scene = new Scene(root, 1280, 720);
         stage.setTitle("COL3A1 Splicing Analyzer");
         stage.setScene(scene);

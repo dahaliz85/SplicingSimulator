@@ -2,6 +2,7 @@ package com.uvm.biomedica.controller;
 
 import com.uvm.biomedica.model.*;
 
+import com.uvm.biomedica.util.BiologicalWeight;
 import com.uvm.biomedica.util.Constants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +30,9 @@ import java.util.regex.*;
 
 @SuppressWarnings("ALL")
 public class MainController {
+
+    private BiologicalWeight biologicalWeight = new BiologicalWeight();
+    private String gene;
 
     private double yOffset = Constants.INITIAL_OFFSET;
     private double xOffset = Constants.INITIAL_OFFSET;
@@ -178,6 +182,10 @@ public class MainController {
         }
     }
 
+    void setGene(String fileName){
+        this.gene = fileName.replaceAll("sequence_RNA_(.*)\\.gb", "$1");
+    }
+
     /**
      * Acción para el botón "Cargar Secuencia Sana"
      */
@@ -187,6 +195,7 @@ public class MainController {
         if (archivo != null) {
             try {
                 List<FeatureGenetica> datos = procesarGenBank(archivo);
+                setGene(archivo.getName());
 
                 // Convertimos la lista a ObservableList para la tabla
                 ObservableList<FeatureGenetica> itemsTabla = FXCollections.observableArrayList(datos);
@@ -258,7 +267,7 @@ public class MainController {
             }
 
             // 3. COMPARACIÓN REAL DE COORDENADAS (Sano vs Mutado/Control)
-            double diferenciaEstructura = calcularDiferenciaEstructural(datosSanos, datosMutados);
+            double diferenciaEstructura = calcularDiferenciaEstructural(datosSanos, datosMutados, biologicalWeight.getMapBiologicalWeight().get(gene));
 
             // La eficiencia máxima biológica esperada
             double eficienciaSanaFinal = 98.25;
@@ -323,9 +332,9 @@ public class MainController {
     }
 
     // Método auxiliar para comparar matemáticamente las dos listas de la interfaz
-    private double calcularDiferenciaEstructural(List<?> listaSana, List<?> listaMutada) {
+    private double calcularDiferenciaEstructural(List<?> listaSana, List<?> listaMutada, double biologicalWeight) {
         if (listaSana.size() != listaMutada.size()) {
-            return 0.85; // Si el conteo de intrones/exones cambia, hay Exon Skipping severo
+            return 0.85 * biologicalWeight; // Si el conteo de intrones/exones cambia, hay Exon Skipping severo
         }
 
         double desvios = 0;
@@ -342,14 +351,15 @@ public class MainController {
 
                 // Si las coordenadas difieren en el disco, calculamos el impacto real
                 if (s.getInicio() != m.getInicio() || s.getFin() != m.getFin()) {
-                    desvios += 0.15;
+                    desvios++;
                 }
                 elementosComparados++;
             }
         }
 
-        if (elementosComparados == 0) return 0.0;
-        return Math.min(0.90, desvios / elementosComparados);
+        // Normalizas primero el error físico, luego aplicas el peso biológico del gen
+        double tasaError = (elementosComparados == 0) ? 0.0 : (double) desvios / elementosComparados;
+        return Math.min(0.90, tasaError * biologicalWeight * 5.0); // El factor 5.0 es para escalar el resultado al rango de eficiencia
     }
 
     private List<FeatureGenetica> procesarGenBank(File archivo) throws Exception {

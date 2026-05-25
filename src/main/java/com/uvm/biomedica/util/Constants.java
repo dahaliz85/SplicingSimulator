@@ -13,7 +13,7 @@ public class Constants {
     public static final String ICONS_ICON_VARIANT_DETECTED = "variant_detected";
     public static final String ICONS_ICON_EXTENSION = ".png";
     public static final String INSTRUCTIONS_HEALTH_SEQUENCE = "Use el botón superior para cargar el archivo FASTA del gen silvestre (Sano)...";
-    public static final String INSTRUCTIONS_MUTATED_SEQUENCE = "Use el botón superior para cargar el archivo FASTA con la variante hEDS...";
+    public static final String INSTRUCTIONS_MUTATED_SEQUENCE = "Use el botón superior para cargar el archivo FASTA con la variante ...";
     public static final String LBL_MONTE_CARLO_PROGRESS = "Progreso de Monte Carlo";
     public static final String TBL_COL_HEADER_TIPO = "tipo";
     public static final String TBL_COL_HEADER_START = "inicio";
@@ -33,7 +33,7 @@ public class Constants {
     public static final String LBL_SIMULATION_COMPLETED = " Simulación completada";
     public static final String LBL_NORMAL_DIAGNOSIS = "Diagnóstico: Splicing Normal (Grupo Control / Variante Sin Impacto)";
     public static final String LBL_ALTERED_DIAGNOSIS = "Diagnóstico: Eficiencia de Splicing Alterada (Variante Significativa)";
-    public static final String LBL_PATHOGENIC_VARIANT_DIAGNOSIS = "Diagnóstico: Exon Skipping Detectado (Variante Patogénica hEDS)";
+    public static final String LBL_PATHOGENIC_VARIANT_DIAGNOSIS = "Diagnóstico: Exon Skipping Detectado (Variante Patogénica Detectada)";
     public static final String RGX_EXON_DATA = "exon\\s+(\\d+)\\.\\.(\\d+)";
     public static final String TXT_EXON_POINT = "> EXÓN ";
     public static final String TXT_EXON_CODIFICANT_SEQUENCE = "[Secuencia Codificante Spliced] ...\n\n";
